@@ -1,11 +1,6 @@
 function displayNumber(number) {
-    // Get the current display value
     var currentValue = document.getElementById('display').value;
-
-    // Concatenate the clicked number to the display value
     var newValue = currentValue + number;
-
-    // Update the display with the new value
     document.getElementById('display').value = newValue;
 }
 
@@ -27,4 +22,43 @@ resetButton.addEventListener('click', function() {
 function clearDisplay() {
     document.getElementById('display').value = '';
 }
+
+var operatorButtons = document.querySelectorAll('.operator');
+var currentNumber;
+var currentOperation;
+
+operatorButtons.forEach((operatorButton) => {
+    operatorButton.addEventListener('click', () => {
+        currentNumber = document.getElementById('display').value;
+        currentOperation = operatorButton.textContent;
+        clearDisplay();
+    });
+});
+
+var equalButton = document.getElementById('equal');
+
+equalButton.addEventListener('click', function() {
+    var result = doOperation(currentNumber, currentOperation);
+    document.getElementById('display').value = result;
+    currentNumber = null;
+    currentOperation = null;
+});
+
+function doOperation(currentNumber, currentOperation) {
+    switch (currentOperation) {
+        case '+':
+            return parseFloat(currentNumber) + parseFloat(document.getElementById('display').value);
+        case '-':
+            return parseFloat(currentNumber) - parseFloat(document.getElementById('display').value);
+        case '*':
+            return parseFloat(currentNumber) * parseFloat(document.getElementById('display').value);
+        case '/':
+            return parseFloat(currentNumber) / parseFloat(document.getElementById('display').value);
+        default:
+            return NaN;
+    }
+}
+
+
+
 
