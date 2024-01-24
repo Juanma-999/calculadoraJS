@@ -9,7 +9,6 @@ var numberButtons = document.querySelectorAll('.number');
 numberButtons.forEach((numberButton) => {
     numberButton.addEventListener('click', () => {
         displayNumber(numberButton.textContent);
-        console.log(numberButton.textContent)
     });
 });
 
@@ -29,9 +28,15 @@ var currentOperation;
 
 operatorButtons.forEach((operatorButton) => {
     operatorButton.addEventListener('click', () => {
-        currentNumber = document.getElementById('display').value;
-        currentOperation = operatorButton.textContent;
-        clearDisplay();
+        if(currentOperation==null) {
+            currentNumber = document.getElementById('display').value;
+            currentOperation = operatorButton.textContent;
+            clearDisplay();
+        } else {
+            currentNumber = doOperation(currentNumber, currentOperation);
+            currentOperation = operatorButton.textContent;
+            clearDisplay();
+        }
     });
 });
 
@@ -45,20 +50,28 @@ equalButton.addEventListener('click', function() {
 });
 
 function doOperation(currentNumber, currentOperation) {
+    var display = document.getElementById('display');
     switch (currentOperation) {
         case '+':
-            return parseFloat(currentNumber) + parseFloat(document.getElementById('display').value);
+            currentNumber = parseFloat(currentNumber) + parseFloat(display.value);
+            break;
         case '-':
-            return parseFloat(currentNumber) - parseFloat(document.getElementById('display').value);
+            currentNumber = parseFloat(currentNumber) - parseFloat(display.value);
+            break;
         case '*':
-            return parseFloat(currentNumber) * parseFloat(document.getElementById('display').value);
+            currentNumber = parseFloat(currentNumber) * parseFloat(display.value);
+            break;
         case '/':
-            return parseFloat(currentNumber) / parseFloat(document.getElementById('display').value);
+            var divisor = parseFloat(display.value);
+            if (divisor === 0) {
+                console.error("Cannot divide by zero");
+                return NaN; // Or handle the error in a way that fits your application
+            }
+            currentNumber = parseFloat(currentNumber) / divisor;
+            break;
         default:
             return NaN;
     }
+    console.log(currentNumber);
+    return currentNumber;
 }
-
-
-
-
