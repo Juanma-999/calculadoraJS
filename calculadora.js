@@ -65,7 +65,7 @@ function doOperation(currentNumber, currentOperation) {
             var divisor = parseFloat(display.value);
             if (divisor === 0) {
                 console.error("Cannot divide by zero");
-                return NaN; // Or handle the error in a way that fits your application
+                return NaN;
             }
             currentNumber = parseFloat(currentNumber) / divisor;
             break;
