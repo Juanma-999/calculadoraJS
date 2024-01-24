@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora</title>
+    <style>
+        #calculator-container {
+            width: 250px;
+            height:fit-content;
+            margin: 0 auto;
+            background-color: darkblue;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content:space-around;
+        }
+        input {
+            background-color: darkgreen;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 20px;
+            box-sizing: border-box;
+            text-align: right; /* Align text to the right within the input */
+            outline: none; /* Remove the default outline on focus */
+            color:white;
+        }
+        button {
+            flex-basis: 50px;
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            border: 1px solid grey;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkgrey;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator-container">
+        <input type="text" id="display" readonly>
+        <button class="number">1</button>
+        <button class="number">2</button>
+        <button class="number">3</button>
+        <button class="operator">+</button>
+        <button class="number">4</button>
+        <button class="number">5</button>
+        <button class="number">6</button>
+        <button class="operator">-</button>
+        <button class="number">7</button>
+        <button class="number">8</button>
+        <button class="number">9</button>
+        <button class="operator">*</button>
+        <button class="number">0</button>
+        <button id="reset">AC</button>
+        <button class="operator">=</button>
+        <button class="operator">/</button>
+    </div>
+    <script src="calculadora.js"></script>
+</body>
+</html>
